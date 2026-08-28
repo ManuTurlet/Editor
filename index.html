@@ -426,6 +426,89 @@
     letter-spacing:0.06em;
   }
 
+  /* ---------- Fullscreen video modal ---------- */
+  .video-modal{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity 0.3s ease, visibility 0s linear 0.3s;
+  }
+
+  .video-modal.is-active{
+    opacity:1;
+    visibility:visible;
+    transition:opacity 0.3s ease, visibility 0s linear 0s;
+  }
+
+  .video-modal__backdrop{
+    position:absolute;
+    inset:0;
+    background:rgba(10,10,12,0.94);
+  }
+
+  .video-modal__stage{
+    position:relative;
+    width:100%;
+    height:100%;
+    transform:scale(0.85);
+    transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1);
+  }
+
+  .video-modal.is-active .video-modal__stage{
+    transform:scale(1);
+  }
+
+  .video-modal__stage iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+  }
+
+  .video-modal__close{
+    position:absolute;
+    top:20px;
+    right:24px;
+    z-index:1001;
+    width:42px;
+    height:42px;
+    border:1px solid var(--line-strong);
+    background:rgba(20,20,24,0.7);
+    color:var(--ink);
+    font-family:'JetBrains Mono', monospace;
+    font-size:1.1rem;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .video-modal__close:hover{border-color:var(--amber); color:var(--amber);}
+
+  .video-modal__label{
+    position:absolute;
+    top:24px;
+    left:24px;
+    z-index:1001;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    background:rgba(20,20,24,0.7);
+    border:1px solid var(--line-strong);
+    padding:6px 10px;
+  }
+
+  body.modal-open{overflow:hidden;}
+
   @media (max-width:640px){
     .timeline-nav__links span.link-text{display:none;}
     .timeline-nav__links{gap:16px;}
@@ -441,9 +524,9 @@
     <div class="timeline-nav__top">
       <a href="#top" class="timeline-nav__logo">MT<span>.</span></a>
       <ul class="timeline-nav__links">
-        <li><a href="#commercials" data-sec="commercials"><span class="link-text">01 </span>Commercials</a></li>
-        <li><a href="#series" data-sec="series"><span class="link-text">02 </span>Series</a></li>
-        <li><a href="#fiction" data-sec="fiction"><span class="link-text">03 </span>Fiction</a></li>
+        <li><a href="#series" data-sec="series"><span class="link-text">01 </span>Series</a></li>
+        <li><a href="#commercials" data-sec="commercials"><span class="link-text">02 </span>Commercials</a></li>
+        <li><a href="#movies" data-sec="movies"><span class="link-text">03 </span>Movies</a></li>
       </ul>
     </div>
     <div class="scrub-track">
@@ -471,7 +554,7 @@
       </div>
       <div>
         <span class="label">Discipline</span>
-        <span class="value">Picture Editing</span>
+        <span class="value">Video Editing</span>
       </div>
       <div>
         <span class="label">Full Reel</span>
@@ -480,9 +563,56 @@
     </div>
   </section>
 
-  <section class="reel" id="commercials">
+  <section class="reel" id="series">
     <div class="reel__head">
       <span class="reel__num mono">01</span>
+      <h2 class="reel__title">Series</h2>
+      <span class="reel__count">3 CUTS</span>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card__frame" data-vimeo-id="264200072" data-vimeo-h="e1195e17c9">
+          <img src="https://i.vimeocdn.com/video/693919631-889da30e6f0e59bac0c53707ecba4b778a4178006c8c4b449dbdd56644d50454-d_2400?region=us" alt="Kim Kong Saison 1 thumbnail" loading="lazy">
+          <span class="card__tc mono">TC 00:01:04:07</span>
+          <div class="card__play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">Kim Kong — Saison 1</h3>
+          <p class="card__credit">DIR. <b>Stephen Cafiero</b></p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card__frame" data-vimeo-id="174190465" data-vimeo-h="37bce1ef53">
+          <img src="https://i.vimeocdn.com/video/580948637-49bedab4069e25d856a511f1bd2debfb294633d0122cd1858968d52a5ca8e6f6-d_2400?region=us" alt="Irresponsable OCS thumbnail" loading="lazy">
+          <span class="card__tc mono">TC 00:00:44:16</span>
+          <div class="card__play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">Irresponsable — OCS</h3>
+          <p class="card__credit">DIR. <b>Stephen Cafiero</b></p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card__frame" data-vimeo-id="161895105" data-vimeo-h="c9f9b3911a">
+          <img src="https://i.vimeocdn.com/video/564229729-08f6fcbedcc5e63cdec3b4ac3fb1f2316e69d9d6ebea7a3a9dc33f62e65ee558-d_2400?region=us" alt="Templeton Season 1 thumbnail" loading="lazy">
+          <span class="card__tc mono">TC 00:00:57:23</span>
+          <div class="card__play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">Templeton — Season 1</h3>
+          <p class="card__credit">DIR. <b>Stephen Cafiero</b> · ED. Emmanuel Turlet, Cyril Besnard, Johann Herbay</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="reel" id="commercials">
+    <div class="reel__head">
+      <span class="reel__num mono">02</span>
       <h2 class="reel__title">Commercials</h2>
       <span class="reel__count">4 CUTS</span>
     </div>
@@ -539,57 +669,10 @@
     </div>
   </section>
 
-  <section class="reel" id="series">
-    <div class="reel__head">
-      <span class="reel__num mono">02</span>
-      <h2 class="reel__title">Series</h2>
-      <span class="reel__count">3 CUTS</span>
-    </div>
-    <div class="grid">
-
-      <article class="card">
-        <div class="card__frame" data-vimeo-id="264200072" data-vimeo-h="e1195e17c9">
-          <img src="https://i.vimeocdn.com/video/693919631-889da30e6f0e59bac0c53707ecba4b778a4178006c8c4b449dbdd56644d50454-d_2400?region=us" alt="Kim Kong Saison 1 thumbnail" loading="lazy">
-          <span class="card__tc mono">TC 00:01:04:07</span>
-          <div class="card__play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
-        </div>
-        <div class="card__body">
-          <h3 class="card__title">Kim Kong — Saison 1</h3>
-          <p class="card__credit">DIR. <b>Stephen Cafiero</b></p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card__frame" data-vimeo-id="174190465" data-vimeo-h="37bce1ef53">
-          <img src="https://i.vimeocdn.com/video/580948637-49bedab4069e25d856a511f1bd2debfb294633d0122cd1858968d52a5ca8e6f6-d_2400?region=us" alt="Irresponsable OCS thumbnail" loading="lazy">
-          <span class="card__tc mono">TC 00:00:44:16</span>
-          <div class="card__play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
-        </div>
-        <div class="card__body">
-          <h3 class="card__title">Irresponsable — OCS</h3>
-          <p class="card__credit">DIR. <b>Stephen Cafiero</b></p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card__frame" data-vimeo-id="161895105" data-vimeo-h="c9f9b3911a">
-          <img src="https://i.vimeocdn.com/video/564229729-08f6fcbedcc5e63cdec3b4ac3fb1f2316e69d9d6ebea7a3a9dc33f62e65ee558-d_2400?region=us" alt="Templeton Season 1 thumbnail" loading="lazy">
-          <span class="card__tc mono">TC 00:00:57:23</span>
-          <div class="card__play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
-        </div>
-        <div class="card__body">
-          <h3 class="card__title">Templeton — Season 1</h3>
-          <p class="card__credit">DIR. <b>Stephen Cafiero</b> · ED. Emmanuel Turlet, Cyril Besnard, Johann Herbay</p>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <section class="reel" id="fiction">
+  <section class="reel" id="movies">
     <div class="reel__head">
       <span class="reel__num mono">03</span>
-      <h2 class="reel__title">Fiction</h2>
+      <h2 class="reel__title">Movies</h2>
       <span class="reel__count">2 CUTS</span>
     </div>
     <div class="grid">
@@ -633,6 +716,15 @@
   </footer>
 </main>
 
+<div class="video-modal" id="videoModal">
+  <div class="video-modal__backdrop" id="videoModalBackdrop"></div>
+  <div class="video-modal__stage">
+    <span class="video-modal__label mono" id="videoModalLabel"></span>
+    <button class="video-modal__close" id="videoModalClose" aria-label="Close video">✕</button>
+    <div id="videoModalPlayer"></div>
+  </div>
+</div>
+
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -665,19 +757,46 @@
   }, {rootMargin:'-40% 0px -50% 0px'});
   sections.forEach(s => observer.observe(s));
 
-  // Click-to-play Vimeo embeds
+  // Click-to-play: video opens in a fullscreen foreground modal,
+  // and shrinks back down to the grid when closed.
+  const modal = document.getElementById('videoModal');
+  const modalPlayer = document.getElementById('videoModalPlayer');
+  const modalLabel = document.getElementById('videoModalLabel');
+  const modalClose = document.getElementById('videoModalClose');
+  const modalBackdrop = document.getElementById('videoModalBackdrop');
+
+  function openVideo(id, h, title){
+    modalPlayer.innerHTML = '';
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://player.vimeo.com/video/${id}?h=${h}&autoplay=1&title=0&byline=0&portrait=0`;
+    iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+    iframe.allowFullscreen = true;
+    modalPlayer.appendChild(iframe);
+    modalLabel.textContent = title || '';
+    modal.classList.add('is-active');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeVideo(){
+    modal.classList.remove('is-active');
+    document.body.classList.remove('modal-open');
+    // stop playback once the shrink-down transition finishes
+    setTimeout(() => { modalPlayer.innerHTML = ''; }, 320);
+  }
+
   document.querySelectorAll('.card__frame').forEach(frame => {
     frame.addEventListener('click', () => {
-      if(frame.querySelector('iframe')) return;
       const id = frame.dataset.vimeoId;
       const h = frame.dataset.vimeoH;
-      const iframe = document.createElement('iframe');
-      iframe.src = `https://player.vimeo.com/video/${id}?h=${h}&autoplay=1&title=0&byline=0&portrait=0`;
-      iframe.allow = 'autoplay; fullscreen; picture-in-picture';
-      iframe.allowFullscreen = true;
-      frame.innerHTML = '';
-      frame.appendChild(iframe);
-    }, {once:true});
+      const title = frame.closest('.card').querySelector('.card__title')?.textContent || '';
+      openVideo(id, h, title);
+    });
+  });
+
+  modalClose.addEventListener('click', closeVideo);
+  modalBackdrop.addEventListener('click', closeVideo);
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && modal.classList.contains('is-active')) closeVideo();
   });
 </script>
 
